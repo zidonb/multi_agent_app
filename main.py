@@ -1,6 +1,7 @@
 from supervisor import run_supervisor
 from parallel_supervisor import run_parallel_supervisor
 from dynamic_supervisor import run_dynamic_supervisor
+from lcel_chain import run_facts_chain
 from dotenv import load_dotenv
 import asyncio
 
@@ -13,9 +14,10 @@ def main():
     print("  1. Sequential  - research one topic deeply")
     print("  2. Parallel    - research multiple topics simultaneously")
     print("  3. Dynamic     - LLM supervised orchestration")
+    print("  4. LCEL Chain  - simple fact generation pipeline")
     print("==========================================")
     
-    mode = input("Choose mode (1, 2 or 3): ").strip()
+    mode = input("Choose mode (1, 2, 3 or 4): ").strip()
     
     if mode == "1":
         topic = input("Enter a topic to research (e.g. tesla, openai): ").strip()
@@ -31,12 +33,16 @@ def main():
         topic = input("Enter a topic to research (e.g. tesla, openai): ").strip()
         report = run_dynamic_supervisor(topic)
         
+    elif mode == "4":
+        topic = input("Enter a topic for facts (e.g. tesla, openai): ").strip()
+        report = run_facts_chain(topic)
+        
     else:
         print("Invalid choice.")
         return
     
     print("==========================================")
-    print("📄 FINAL REPORT:")
+    print("📄 OUTPUT:")
     print("==========================================")
     print(report)
 
