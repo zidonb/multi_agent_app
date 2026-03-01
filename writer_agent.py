@@ -16,3 +16,4 @@ def run_writer_agent(topic: str, research: str) -> str:
     
     response = llm.invoke(messages)
     return response.content
+
